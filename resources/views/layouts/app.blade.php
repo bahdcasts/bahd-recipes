@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/vegas.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    @yield('styles')
     <title>Bahd-recipes </title>
 </head>
 
@@ -20,7 +21,7 @@
     <!-- The navigation bar begin -->
     <nav class="navbar navbar-expand-lg navbar-custom">
         <a class="navbar-brand" href="index.html">
-            <img src="img/logo.png" class="navbar-logo-img mr-2" alt=""> Bahd-recipes
+            <img src="{{ asset('img/logo.png') }}" class="navbar-logo-img mr-2" alt=""> Bahd-recipes
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -63,21 +64,10 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
-    <script src="{{ asset('js/vegas.min.js') }}"></script>
+    @yield('scripts')
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script>
         new WOW().init();
-        $("#jumbotron").vegas({
-            timer: false,
-            shuffle: true,
-            transition: 'fade',
-            animation: 'kenburns',
-            slides: [
-                { src: 'img/banner-1.jpg' },
-                { src: 'img/banner-2.jpg' },
-                { src: 'img/banner-3.jpg' }
-            ]
-        });
     </script>
 </body>
 
