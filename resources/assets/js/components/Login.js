@@ -51,6 +51,13 @@ export default class Login extends Component {
         }
 
         // post the data to the server.
+        axios.post('/login', this.state).then(response => {
+            window.location = '/';
+        }).catch(error => {
+            this.setState({
+                errors: error.response.data.errors
+            });
+        });
     }
     render() {
         return (
