@@ -11252,6 +11252,22 @@ var Login = function (_Component) {
             }
 
             return errors;
+        }, _this.renderErrorsFor = function (field) {
+            if (_this.state.errors[field]) {
+                return _this.state.errors[field].map(function (error) {
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'span',
+                        { key: error },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'small',
+                            { style: { color: "#E27C3E" } },
+                            error
+                        ),
+                        ' ',
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null)
+                    );
+                });
+            }
         }, _this.handleFormSubmit = function (event) {
             event.preventDefault();
 
@@ -11296,7 +11312,8 @@ var Login = function (_Component) {
                             placeholder: 'email@example.com',
                             name: 'email',
                             onChange: this.handleFieldChange
-                        })
+                        }),
+                        this.renderErrorsFor('email')
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -11317,7 +11334,8 @@ var Login = function (_Component) {
                             placeholder: 'Password',
                             name: 'password',
                             onChange: this.handleFieldChange
-                        })
+                        }),
+                        this.renderErrorsFor('password')
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

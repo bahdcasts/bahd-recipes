@@ -4,7 +4,7 @@ import isEmail from 'validator/lib/isEmail';
 
 export default class Login extends Component {
     state = { email: '', password: '', errors: {} };
-    handleFieldChange = (event)  => {
+    handleFieldChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         });
@@ -28,6 +28,17 @@ export default class Login extends Component {
 
         return errors;
     }
+
+    renderErrorsFor = field => {
+        if (this.state.errors[field]) {
+            return this.state.errors[field].map(error => (
+                <span key={error}>
+                    <small style={{ color: "#E27C3E" }}>{error}</small> <br />
+                </span>
+            ));
+        }
+    }
+
     handleFormSubmit = (event) => {
         event.preventDefault();
 
@@ -56,6 +67,7 @@ export default class Login extends Component {
                             name="email"
                             onChange={this.handleFieldChange}
                         />
+                        {this.renderErrorsFor('email')}
                     </div>
                 </div>
                 <div className="form-group row">
@@ -69,6 +81,7 @@ export default class Login extends Component {
                             name="password"
                             onChange={this.handleFieldChange}
                         />
+                        {this.renderErrorsFor('password')}
                     </div>
                 </div>
                 <div className="form-group row">
