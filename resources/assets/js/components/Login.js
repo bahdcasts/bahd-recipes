@@ -1,17 +1,45 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import isEmail from 'validator/lib/isEmail';
 
 export default class Login extends Component {
-    state = { email: '', password: '' };
+    state = { email: '', password: '', errors: {} };
     handleFieldChange = (event)  => {
         this.setState({
             [event.target.name]: event.target.value
         });
     }
+    validateUserInput = userData => {
+        // email is required, password is required
+        // valid email, password > 8 characters.
+        let errors = { email: [], password: [] };
+        if (!userData.email) {
+            errors.email.push('The email is required');
+        }
+        if (!userData.password) {
+            errors.password.push('The password is required');
+        }
+        if (!isEmail(userData.email)) {
+            errors.email.push('The email must be a valid email address.');
+        }
+        if (userData.password.length < 8) {
+            errors.password.push('The password must be 8 characters or more.');
+        }
+
+        return errors;
+    }
     handleFormSubmit = (event) => {
         event.preventDefault();
 
-        console.log(this.state);
+        const errors = this.validateUserInput(this.state);
+        if (errors.email.length > 0 || errors.password.length > 0) {
+            this.setState({
+                errors
+            });
+            return;
+        }
+
+        // post the data to the server.
     }
     render() {
         return (
