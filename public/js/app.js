@@ -11219,33 +11219,26 @@ var Login = function (_Component) {
     _inherits(Login, _Component);
 
     function Login() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
         _classCallCheck(this, Login);
 
-        var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
 
-        _this.state = {
-            email: '',
-            password: ''
-        };
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Login.__proto__ || Object.getPrototypeOf(Login)).call.apply(_ref, [this].concat(args))), _this), _this.state = { email: '', password: '' }, _this.handleFieldChange = function (event) {
+            _this.setState(_defineProperty({}, event.target.name, event.target.value));
+        }, _this.handleFormSubmit = function (event) {
+            event.preventDefault();
 
-        _this.handleFieldChange = _this.handleFieldChange.bind(_this);
-        _this.handleFormSubmit = _this.handleFormSubmit.bind(_this);
-        return _this;
+            console.log(_this.state);
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(Login, [{
-        key: 'handleFieldChange',
-        value: function handleFieldChange(event) {
-            this.setState(_defineProperty({}, event.target.name, event.target.value));
-        }
-    }, {
-        key: 'handleFormSubmit',
-        value: function handleFormSubmit(event) {
-            event.preventDefault();
-
-            console.log(this.state);
-        }
-    }, {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

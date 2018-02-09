@@ -2,22 +2,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Login extends Component {
-    constructor() {
-        super();
-        this.state = {
-            email: '',
-            password: ''
-        };
-
-        this.handleFieldChange = this.handleFieldChange.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    }
-    handleFieldChange(event) {
+    state = { email: '', password: '' };
+    handleFieldChange = (event)  => {
         this.setState({
             [event.target.name]: event.target.value
         });
     }
-    handleFormSubmit(event) {
+    handleFormSubmit = (event) => {
         event.preventDefault();
 
         console.log(this.state);
