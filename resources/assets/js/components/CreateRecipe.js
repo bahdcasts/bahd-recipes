@@ -2,6 +2,8 @@ import ReactDOM from 'react-dom';
 import Dropzone from 'react-dropzone';
 import React, { Component } from 'react';
 
+import RenderArrayInput from './RenderArrayInput';
+
 const dropzoneStyles = {
   border: 'none',
 };
@@ -93,18 +95,10 @@ export default class CreateRecipe extends Component {
                 <h3 className="text-muted mb-3 mt-3">
                   <span className="mr-2">Ingredients</span>
                 </h3>
-                <ul className="list-group">
-                  {this.state.ingredients.map((ingredient, index) => (
-                    <li className="list-group-item" key={index}>
-                      <input type="text"
-                        value={ingredient}
-                        className="form-control"
-                        placeholder="50 Naira Garri"
-                        onChange={event => this.handleIngredientChange(event, index)}
-                      />
-                    </li>
-                  ))}
-                </ul>
+                <RenderArrayInput
+                  elements={this.state.ingredients}
+                  handleElementChange={this.handleIngredientChange}
+                />
                 <button className="btn my-2 btn-primary btn-xs" onClick={this.addNewIngredient}>
                   Add ingredient
                 </button>
