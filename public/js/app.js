@@ -24125,6 +24125,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24157,17 +24159,33 @@ var CreateRecipe = function (_Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CreateRecipe.__proto__ || Object.getPrototypeOf(CreateRecipe)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       uploadedImage: null,
-      title: '', description: '', timeToCook: 0
+      title: '',
+      description: '',
+      timeToCook: 0,
+      ingredients: ['', '']
     }, _this.handleFileDrop = function (files) {
       _this.setState({ uploadedImage: files[0] });
     }, _this.handleInputChange = function (event) {
       _this.setState(_defineProperty({}, event.target.name, event.target.value));
+    }, _this.handleIngredientChange = function (event, index) {
+      var ingredients = _this.state.ingredients;
+
+
+      ingredients[index] = event.target.value;
+
+      _this.setState({ ingredients: ingredients });
+    }, _this.addNewIngredient = function () {
+      _this.setState({
+        ingredients: [].concat(_toConsumableArray(_this.state.ingredients), [''])
+      });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(CreateRecipe, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
         'div',
         { className: 'container my-5' },
@@ -24253,15 +24271,24 @@ var CreateRecipe = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                   'ul',
                   { className: 'list-group' },
-                  __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-                    'li',
-                    { className: 'list-group-item' },
-                    __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: '50 Naira Garri' })
-                  )
+                  this.state.ingredients.map(function (ingredient, index) {
+                    return __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
+                      'li',
+                      { className: 'list-group-item', key: index },
+                      __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('input', { type: 'text',
+                        value: ingredient,
+                        className: 'form-control',
+                        placeholder: '50 Naira Garri',
+                        onChange: function onChange(event) {
+                          return _this2.handleIngredientChange(event, index);
+                        }
+                      })
+                    );
+                  })
                 ),
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                   'button',
-                  { className: 'btn my-2 btn-primary btn-xs' },
+                  { className: 'btn my-2 btn-primary btn-xs', onClick: this.addNewIngredient },
                   'Add ingredient'
                 ),
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(

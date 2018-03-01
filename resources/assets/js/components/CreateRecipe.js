@@ -10,7 +10,10 @@ export default class CreateRecipe extends Component {
 
   state = {
     uploadedImage: null,
-    title: '', description: '', timeToCook: 0
+    title: '',
+    description: '',
+    timeToCook: 0,
+    ingredients: ['', '']
   };
 
   handleFileDrop = (files) => {
@@ -20,6 +23,23 @@ export default class CreateRecipe extends Component {
   handleInputChange = event => {
     this.setState({
       [event.target.name]: event.target.value
+    });
+  }
+
+  handleIngredientChange = (event, index) => {
+    const { ingredients } = this.state;
+
+    ingredients[index] = event.target.value;
+
+    this.setState({ ingredients });
+  }
+
+  addNewIngredient = ()  => {
+    this.setState({
+      ingredients: [
+        ...this.state.ingredients,
+        ''
+      ]
     });
   }
 
@@ -53,7 +73,7 @@ export default class CreateRecipe extends Component {
               {
                 this.state.uploadedImage &&
                 <Dropzone style={dropzoneStyles} onDrop={this.handleFileDrop} multiple={false}>
-                  <img src={this.state.uploadedImage.preview} alt="" className="card-img-top"/>
+                  <img src={this.state.uploadedImage.preview} alt="" className="card-img-top" />
                 </Dropzone>
               }
               {/* End upload recipe image */}
@@ -74,13 +94,20 @@ export default class CreateRecipe extends Component {
                   <span className="mr-2">Ingredients</span>
                 </h3>
                 <ul className="list-group">
-                  <li className="list-group-item">
-                    <input type="text" className="form-control" placeholder="50 Naira Garri" />
-                  </li>
+                  {this.state.ingredients.map((ingredient, index) => (
+                    <li className="list-group-item" key={index}>
+                      <input type="text"
+                        value={ingredient}
+                        className="form-control"
+                        placeholder="50 Naira Garri"
+                        onChange={event => this.handleIngredientChange(event, index)}
+                      />
+                    </li>
+                  ))}
                 </ul>
-                <button className="btn my-2 btn-primary btn-xs">
+                <button className="btn my-2 btn-primary btn-xs" onClick={this.addNewIngredient}>
                   Add ingredient
-          </button>
+                </button>
                 <h3 className="text-muted mb-3 mt-3">
                   <span className="mr-1">Procedure</span>
                 </h3>
