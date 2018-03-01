@@ -24125,6 +24125,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -24154,9 +24156,12 @@ var CreateRecipe = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CreateRecipe.__proto__ || Object.getPrototypeOf(CreateRecipe)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      uploadedImage: null
+      uploadedImage: null,
+      title: '', description: '', timeToCook: 0
     }, _this.handleFileDrop = function (files) {
       _this.setState({ uploadedImage: files[0] });
+    }, _this.handleInputChange = function (event) {
+      _this.setState(_defineProperty({}, event.target.name, event.target.value));
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -24226,15 +24231,15 @@ var CreateRecipe = function (_Component) {
                   __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                     'div',
                     { className: 'col-sm-8' },
-                    __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Recipe title ...' })
+                    __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('input', { type: 'text', name: 'title', onChange: this.handleInputChange, className: 'form-control', placeholder: 'Recipe title ...' })
                   ),
                   __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                     'div',
                     { className: 'col-sm-4' },
-                    __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'How long to cook ?' })
+                    __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('input', { type: 'text', name: 'timeToCook', onChange: this.handleInputChange, className: 'form-control', placeholder: 'How long to cook ?' })
                   )
                 ),
-                __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('textarea', { placeholder: 'Tell the world about your recipe ...', cols: 3, rows: 3, className: 'form-control', defaultValue: "" }),
+                __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('textarea', { name: 'description', onChange: this.handleInputChange, placeholder: 'Tell the world about your recipe ...', cols: 3, rows: 3, className: 'form-control', defaultValue: "" }),
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('hr', null),
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                   'h3',

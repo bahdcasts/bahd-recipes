@@ -9,11 +9,18 @@ const dropzoneStyles = {
 export default class CreateRecipe extends Component {
 
   state = {
-    uploadedImage: null
+    uploadedImage: null,
+    title: '', description: '', timeToCook: 0
   };
 
   handleFileDrop = (files) => {
     this.setState({ uploadedImage: files[0] });
+  }
+
+  handleInputChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
 
@@ -55,13 +62,13 @@ export default class CreateRecipe extends Component {
               <div className="card-body">
                 <div className="form-group row">
                   <div className="col-sm-8">
-                    <input type="text" className="form-control" placeholder="Recipe title ..." />
+                    <input type="text" name="title" onChange={this.handleInputChange} className="form-control" placeholder="Recipe title ..." />
                   </div>
                   <div className="col-sm-4">
-                    <input type="text" className="form-control" placeholder="How long to cook ?" />
+                    <input type="text" name="timeToCook" onChange={this.handleInputChange} className="form-control" placeholder="How long to cook ?" />
                   </div>
                 </div>
-                <textarea placeholder="Tell the world about your recipe ..." cols={3} rows={3} className="form-control" defaultValue={""} />
+                <textarea name="description" onChange={this.handleInputChange} placeholder="Tell the world about your recipe ..." cols={3} rows={3} className="form-control" defaultValue={""} />
                 <hr />
                 <h3 className="text-muted mb-3 mt-3">
                   <span className="mr-2">Ingredients</span>
