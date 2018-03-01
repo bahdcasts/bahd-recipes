@@ -27,19 +27,28 @@ export default class CreateRecipe extends Component {
           <div className="col-lg-10 col-md-10">
             <div className="card">
               {/* Upload recipe image */}
-              <Dropzone style={dropzoneStyles} onDrop={this.handleFileDrop} multiple={false}>
-                <div className="upload-recipe-img">
-                  <div className="row justify-content-center">
-                    <div className="col-12">
-                      <p className="text-center">
-                        <span className="h2"><i className="ion ion-camera" /></span>
-                        <br />
-                        Click to upload image
+              {
+                !this.state.uploadedImage &&
+                <Dropzone style={dropzoneStyles} onDrop={this.handleFileDrop} multiple={false}>
+                  <div className="upload-recipe-img">
+                    <div className="row justify-content-center">
+                      <div className="col-12">
+                        <p className="text-center">
+                          <span className="h2"><i className="ion ion-camera" /></span>
+                          <br />
+                          Click to upload image
                     </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Dropzone>
+                </Dropzone>
+              }
+              {
+                this.state.uploadedImage &&
+                <Dropzone style={dropzoneStyles} onDrop={this.handleFileDrop} multiple={false}>
+                  <img src={this.state.uploadedImage.preview} alt="" className="card-img-top"/>
+                </Dropzone>
+              }
               {/* End upload recipe image */}
               <hr />
               {/* Create recipe form */}
