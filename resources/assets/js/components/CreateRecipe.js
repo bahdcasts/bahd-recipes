@@ -1,7 +1,22 @@
 import ReactDOM from 'react-dom';
+import Dropzone from 'react-dropzone';
 import React, { Component } from 'react';
 
+const dropzoneStyles = {
+  border: 'none',
+};
+
 export default class CreateRecipe extends Component {
+
+  state = {
+    uploadedImage: null
+  };
+
+  handleFileDrop = (files) => {
+    this.setState({ uploadedImage: files[0] });
+  }
+
+
   render() {
     return (
       <div className="container my-5">
@@ -12,17 +27,19 @@ export default class CreateRecipe extends Component {
           <div className="col-lg-10 col-md-10">
             <div className="card">
               {/* Upload recipe image */}
-              <div className="upload-recipe-img">
-                <div className="row justify-content-center">
-                  <div className="col-12">
-                    <p className="text-center">
-                      <span className="h2"><i className="ion ion-camera" /></span>
-                      <br />
-                      Click to upload image
-              </p>
+              <Dropzone style={dropzoneStyles} onDrop={this.handleFileDrop} multiple={false}>
+                <div className="upload-recipe-img">
+                  <div className="row justify-content-center">
+                    <div className="col-12">
+                      <p className="text-center">
+                        <span className="h2"><i className="ion ion-camera" /></span>
+                        <br />
+                        Click to upload image
+                    </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Dropzone>
               {/* End upload recipe image */}
               <hr />
               {/* Create recipe form */}
