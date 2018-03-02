@@ -15,7 +15,8 @@ export default class CreateRecipe extends Component {
     title: '',
     description: '',
     timeToCook: 0,
-    ingredients: ['', '']
+    ingredients: ['', ''],
+    procedure: ['']
   };
 
   handleFileDrop = (files) => {
@@ -36,10 +37,27 @@ export default class CreateRecipe extends Component {
     this.setState({ ingredients });
   }
 
+  handleProcedureChange = (event, index) => {
+    const { procedure } = this.state;
+
+    procedure[index] = event.target.value;
+
+    this.setState({ procedure });
+  }
+
   addNewIngredient = ()  => {
     this.setState({
       ingredients: [
         ...this.state.ingredients,
+        ''
+      ]
+    });
+  }
+
+  addNewProcedure = () => {
+    this.setState({
+      procedure: [
+        ...this.state.procedure,
         ''
       ]
     });
@@ -105,21 +123,14 @@ export default class CreateRecipe extends Component {
                 <h3 className="text-muted mb-3 mt-3">
                   <span className="mr-1">Procedure</span>
                 </h3>
-                <ul className="list-group">
-                  <li className="list-group-item">
-                    <div className="row">
-                      <div className="col-1 h3">
-                        <span className="badge badge-primary">1</span>
-                      </div>
-                      <div className="col-11">
-                        <input type="text" className="form-control" placeholder="Pour the garri inside the cup..." />
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-                <button className="btn mt-2 btn-primary btn-xs">
+                <RenderArrayInput
+                  elements={this.state.procedure}
+                  handleElementChange={this.handleProcedureChange}
+                  isProcedure={true}
+                />
+                <button className="btn mt-2 btn-primary btn-xs" onClick={this.addNewProcedure}>
                   Add step
-          </button>
+                </button>
                 <br />
                 <br />
                 <div className="text-center">

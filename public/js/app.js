@@ -24165,7 +24165,8 @@ var CreateRecipe = function (_Component) {
       title: '',
       description: '',
       timeToCook: 0,
-      ingredients: ['', '']
+      ingredients: ['', ''],
+      procedure: ['']
     }, _this.handleFileDrop = function (files) {
       _this.setState({ uploadedImage: files[0] });
     }, _this.handleInputChange = function (event) {
@@ -24177,9 +24178,20 @@ var CreateRecipe = function (_Component) {
       ingredients[index] = event.target.value;
 
       _this.setState({ ingredients: ingredients });
+    }, _this.handleProcedureChange = function (event, index) {
+      var procedure = _this.state.procedure;
+
+
+      procedure[index] = event.target.value;
+
+      _this.setState({ procedure: procedure });
     }, _this.addNewIngredient = function () {
       _this.setState({
         ingredients: [].concat(_toConsumableArray(_this.state.ingredients), [''])
+      });
+    }, _this.addNewProcedure = function () {
+      _this.setState({
+        procedure: [].concat(_toConsumableArray(_this.state.procedure), [''])
       });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -24287,35 +24299,14 @@ var CreateRecipe = function (_Component) {
                     'Procedure'
                   )
                 ),
-                __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-                  'ul',
-                  { className: 'list-group' },
-                  __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-                    'li',
-                    { className: 'list-group-item' },
-                    __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-                      'div',
-                      { className: 'row' },
-                      __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-                        'div',
-                        { className: 'col-1 h3' },
-                        __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-                          'span',
-                          { className: 'badge badge-primary' },
-                          '1'
-                        )
-                      ),
-                      __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-                        'div',
-                        { className: 'col-11' },
-                        __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Pour the garri inside the cup...' })
-                      )
-                    )
-                  )
-                ),
+                __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__RenderArrayInput__["a" /* default */], {
+                  elements: this.state.procedure,
+                  handleElementChange: this.handleProcedureChange,
+                  isProcedure: true
+                }),
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                   'button',
-                  { className: 'btn mt-2 btn-primary btn-xs' },
+                  { className: 'btn mt-2 btn-primary btn-xs', onClick: this.addNewProcedure },
                   'Add step'
                 ),
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement('br', null),
@@ -25131,7 +25122,9 @@ module.exports=function(t){function n(e){if(r[e])return r[e].exports;var o=r[e]=
 
 var RenderArrayInput = function RenderArrayInput(_ref) {
   var elements = _ref.elements,
-      handleElementChange = _ref.handleElementChange;
+      handleElementChange = _ref.handleElementChange,
+      _ref$isProcedure = _ref.isProcedure,
+      isProcedure = _ref$isProcedure === undefined ? false : _ref$isProcedure;
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     "ul",
     { className: "list-group" },
@@ -25139,14 +25132,39 @@ var RenderArrayInput = function RenderArrayInput(_ref) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "li",
         { className: "list-group-item", key: index },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text",
+        !isProcedure && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text",
           value: element,
           className: "form-control",
           placeholder: "50 Naira Garri",
           onChange: function onChange(event) {
             return handleElementChange(event, index);
           }
-        })
+        }),
+        isProcedure && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "row" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "col-1 h3" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "span",
+              { className: "badge badge-primary" },
+              index + 1
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "col-11" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text",
+              value: element,
+              className: "form-control",
+              placeholder: "50 Naira Garri",
+              onChange: function onChange(event) {
+                return handleElementChange(event, index);
+              }
+            })
+          )
+        )
       );
     })
   );
