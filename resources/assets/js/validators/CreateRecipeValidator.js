@@ -17,6 +17,9 @@ export default class CreateRecipeValidator {
     this.validateField('timeToCook');
     this.validateField('description');
     this.validateField('uploadedImage');
+    this.validateArrayField('ingredients');
+    this.validateArrayField('procedure');
+    
 
     return this.errors.title.length < 1 &&
       this.errors.description.length < 1 &&
@@ -28,5 +31,13 @@ export default class CreateRecipeValidator {
     if (!this.data[field]) {
       this.errors[field].push(`The ${field} is required.`);
     }
+  }
+
+  validateArrayField(field) {
+    this.data[field].forEach(element => {
+      if (!element) {
+        this.errors[field].push(`Oops ! One or more of the ${field} is invalid.`);
+      }
+    });
   }
 }

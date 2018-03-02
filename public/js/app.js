@@ -24296,7 +24296,8 @@ var CreateRecipe = function (_Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__RenderArrayInput__["a" /* default */], {
                   elements: this.state.ingredients,
-                  handleElementChange: this.handleIngredientChange
+                  handleElementChange: this.handleIngredientChange,
+                  validateInput: this.validateInput
                 }),
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                   'button',
@@ -24315,7 +24316,8 @@ var CreateRecipe = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__RenderArrayInput__["a" /* default */], {
                   elements: this.state.procedure,
                   handleElementChange: this.handleProcedureChange,
-                  isProcedure: true
+                  isProcedure: true,
+                  validateInput: this.validateInput
                 }),
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                   'button',
@@ -25126,7 +25128,8 @@ var RenderArrayInput = function RenderArrayInput(_ref) {
   var elements = _ref.elements,
       handleElementChange = _ref.handleElementChange,
       _ref$isProcedure = _ref.isProcedure,
-      isProcedure = _ref$isProcedure === undefined ? false : _ref$isProcedure;
+      isProcedure = _ref$isProcedure === undefined ? false : _ref$isProcedure,
+      validateInput = _ref.validateInput;
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     "ul",
     { className: "list-group" },
@@ -25140,7 +25143,8 @@ var RenderArrayInput = function RenderArrayInput(_ref) {
           placeholder: "50 Naira Garri",
           onChange: function onChange(event) {
             return handleElementChange(event, index);
-          }
+          },
+          onBlur: validateInput
         }),
         isProcedure && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
@@ -25163,7 +25167,8 @@ var RenderArrayInput = function RenderArrayInput(_ref) {
               placeholder: "50 Naira Garri",
               onChange: function onChange(event) {
                 return handleElementChange(event, index);
-              }
+              },
+              onBlur: validateInput
             })
           )
         )
@@ -25206,6 +25211,8 @@ var CreateRecipeValidator = function () {
       this.validateField('timeToCook');
       this.validateField('description');
       this.validateField('uploadedImage');
+      this.validateArrayField('ingredients');
+      this.validateArrayField('procedure');
 
       return this.errors.title.length < 1 && this.errors.description.length < 1 && this.errors.timeToCook.length < 1 && this.errors.uploadedImage.length < 1;
     }
@@ -25215,6 +25222,17 @@ var CreateRecipeValidator = function () {
       if (!this.data[field]) {
         this.errors[field].push('The ' + field + ' is required.');
       }
+    }
+  }, {
+    key: 'validateArrayField',
+    value: function validateArrayField(field) {
+      var _this = this;
+
+      this.data[field].forEach(function (element) {
+        if (!element) {
+          _this.errors[field].push('Oops ! One or more of the ' + field + ' is invalid.');
+        }
+      });
     }
   }]);
 

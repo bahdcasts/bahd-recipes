@@ -130,6 +130,7 @@ export default class CreateRecipe extends Component {
                 <RenderArrayInput
                   elements={this.state.ingredients}
                   handleElementChange={this.handleIngredientChange}
+                  validateInput={this.validateInput}
                 />
                 <button className="btn my-2 btn-primary btn-xs" onClick={this.addNewIngredient}>
                   Add ingredient
@@ -141,6 +142,7 @@ export default class CreateRecipe extends Component {
                   elements={this.state.procedure}
                   handleElementChange={this.handleProcedureChange}
                   isProcedure={true}
+                  validateInput={this.validateInput}
                 />
                 <button className="btn mt-2 btn-primary btn-xs" onClick={this.addNewProcedure}>
                   Add step

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RenderArrayInput = ({ elements, handleElementChange, isProcedure = false }) => ((
+const RenderArrayInput = ({ elements, handleElementChange, isProcedure = false, validateInput }) => ((
   <ul className="list-group">
     {elements.map((element, index) => (
       <li className="list-group-item" key={index}>
@@ -11,6 +11,7 @@ const RenderArrayInput = ({ elements, handleElementChange, isProcedure = false }
             className="form-control"
             placeholder="50 Naira Garri"
             onChange={event => handleElementChange(event, index)}
+            onBlur={validateInput}
           />
         }
         {
@@ -26,6 +27,7 @@ const RenderArrayInput = ({ elements, handleElementChange, isProcedure = false }
                 className="form-control"
                 placeholder="50 Naira Garri"
                 onChange={event => handleElementChange(event, index)}
+                onBlur={validateInput}
               />
             </div>
           </div>
