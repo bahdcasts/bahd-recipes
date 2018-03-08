@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import isEmail from 'validator/lib/isEmail';
 
+import ValidationErrors from './ValidationErrors';
+
 export default class Login extends Component {
     state = { email: '', password: '', errors: {} };
     handleFieldChange = (event) => {
@@ -31,11 +33,7 @@ export default class Login extends Component {
 
     renderErrorsFor = field => {
         if (this.state.errors[field]) {
-            return this.state.errors[field].map(error => (
-                <span key={error}>
-                    <small style={{ color: "#E27C3E" }}>{error}</small> <br />
-                </span>
-            ));
+            return <ValidationErrors errors={this.state.errors[field]} />;
         }
     }
 
