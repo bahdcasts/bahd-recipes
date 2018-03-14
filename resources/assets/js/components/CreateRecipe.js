@@ -81,13 +81,22 @@ export default class CreateRecipe extends Component {
   }
 
   handleSubmit = () => {
-    // validate input data
-    console.log(this.validateInput());
     if (!this.validateInput()) {
       return;
     }
-    // make the api request to our backend
-    console.log('VALIDATION PASSED, MAKE API REQUEST.');
+    
+    const data = new FormData();
+    data.append('image', this.state.uploadedImage);
+    data.append('title', this.state.title);
+    data.append('timeToCook', this.state.timeToCook);
+    data.append('description', this.state.description);
+    data.append('ingredients', JSON.stringify(this.state.ingredients));
+    data.append('procedure', JSON.stringify(this.state.procedure));
+    
+    axios.post('/recipes', data)
+      .then(response => {
+        console.log(response);
+      });
   }
 
 
