@@ -11,7 +11,6 @@ const RenderArrayInput = ({ elements, handleElementChange, isProcedure = false, 
             className="form-control"
             placeholder="50 Naira Garri"
             onChange={event => handleElementChange(event, index)}
-            onBlur={validateInput}
           />
         }
         {
@@ -27,7 +26,6 @@ const RenderArrayInput = ({ elements, handleElementChange, isProcedure = false, 
                 className="form-control"
                 placeholder="50 Naira Garri"
                 onChange={event => handleElementChange(event, index)}
-                onBlur={validateInput}
               />
             </div>
           </div>

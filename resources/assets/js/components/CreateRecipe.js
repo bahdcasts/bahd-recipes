@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
 import RenderArrayInput from './RenderArrayInput';
 
+import ValidationErrors from './ValidationErrors';
 import CreateRecipeValidator from '../validators/CreateRecipeValidator';
 
 const dropzoneStyles = {
@@ -18,7 +19,8 @@ export default class CreateRecipe extends Component {
     description: '',
     timeToCook: 0,
     ingredients: ['', ''],
-    procedure: ['']
+    procedure: [''],
+    errors: {}
   };
 
   handleFileDrop = (files) => {
@@ -37,10 +39,11 @@ export default class CreateRecipe extends Component {
     const validator = new CreateRecipeValidator(this.state);
 
     if (!validator.isValid()) {
-      console.log(validator.errors);
-    } else {
-      console.log('validator passed: ', validator.errors);
+      this.setState({ errors: validator.errors });
+      return false;
     }
+
+    return true;
   }
 
   handleIngredientChange = (event, index) => {
@@ -77,6 +80,16 @@ export default class CreateRecipe extends Component {
     });
   }
 
+  handleSubmit = () => {
+    // validate input data
+    console.log(this.validateInput());
+    if (!this.validateInput()) {
+      return;
+    }
+    // make the api request to our backend
+    console.log('VALIDATION PASSED, MAKE API REQUEST.');
+  }
+
 
   render() {
     return (
@@ -98,7 +111,7 @@ export default class CreateRecipe extends Component {
                           <span className="h2"><i className="ion ion-camera" /></span>
                           <br />
                           Click to upload image
-                    </p>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -113,24 +126,30 @@ export default class CreateRecipe extends Component {
               {/* End upload recipe image */}
               <hr />
               {/* Create recipe form */}
+              <div className="text-center">
+                <ValidationErrors errors={this.state.errors.uploadedImage} />
+              </div>
               <div className="card-body">
                 <div className="form-group row">
                   <div className="col-sm-8">
-                    <input type="text" name="title" onBlur={this.validateInput} onChange={this.handleInputChange} className="form-control" placeholder="Recipe title ..." />
+                    <input type="text" name="title" onChange={this.handleInputChange} className="form-control" placeholder="Recipe title ..." />
+                    <ValidationErrors errors={this.state.errors.title} />
                   </div>
                   <div className="col-sm-4">
-                    <input type="text" name="timeToCook" onBlur={this.validateInput} onChange={this.handleInputChange} className="form-control" placeholder="How long to cook ?" />
+                    <input type="text" name="timeToCook" onChange={this.handleInputChange} className="form-control" placeholder="How long to cook ?" />
+                    <ValidationErrors errors={this.state.errors.timeToCook} />
                   </div>
                 </div>
-                <textarea name="description" onBlur={this.validateInput} onChange={this.handleInputChange} placeholder="Tell the world about your recipe ..." cols={3} rows={3} className="form-control" defaultValue={""} />
+                <textarea name="description" onChange={this.handleInputChange} placeholder="Tell the world about your recipe ..." cols={3} rows={3} className="form-control" defaultValue={""} />
+                <ValidationErrors errors={this.state.errors.description} />
                 <hr />
                 <h3 className="text-muted mb-3 mt-3">
                   <span className="mr-2">Ingredients</span>
                 </h3>
+                <ValidationErrors errors={this.state.errors.ingredients} />
                 <RenderArrayInput
                   elements={this.state.ingredients}
                   handleElementChange={this.handleIngredientChange}
-                  validateInput={this.validateInput}
                 />
                 <button className="btn my-2 btn-primary btn-xs" onClick={this.addNewIngredient}>
                   Add ingredient
@@ -138,11 +157,11 @@ export default class CreateRecipe extends Component {
                 <h3 className="text-muted mb-3 mt-3">
                   <span className="mr-1">Procedure</span>
                 </h3>
+                <ValidationErrors errors={this.state.errors.procedure} />
                 <RenderArrayInput
                   elements={this.state.procedure}
                   handleElementChange={this.handleProcedureChange}
                   isProcedure={true}
-                  validateInput={this.validateInput}
                 />
                 <button className="btn mt-2 btn-primary btn-xs" onClick={this.addNewProcedure}>
                   Add step
@@ -150,9 +169,9 @@ export default class CreateRecipe extends Component {
                 <br />
                 <br />
                 <div className="text-center">
-                  <button className="btn btn-primary">
+                  <button className="btn btn-primary" onClick={this.handleSubmit}>
                     Publish Recipe
-            </button>
+                  </button>
                 </div>
               </div>
               {/* End create recipe form */}
