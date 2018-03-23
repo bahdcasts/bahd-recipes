@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
 use Illuminate\Http\Request;
 
 class RecipesController extends Controller
@@ -34,7 +35,10 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($request->all());
+        $image = $request->image->store('public');
+        return response()->json([
+            'image' => asset(Storage::url($image))
+        ]);
     }
 
     /**
