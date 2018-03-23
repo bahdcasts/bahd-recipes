@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Storage;
+use App\Recipe;
 use Illuminate\Http\Request;
 
 class RecipesController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,8 +40,17 @@ class RecipesController extends Controller
     public function store(Request $request)
     {
         $image = $request->image->store('public');
+
+        $recipe = auth()->user()->recipes()->create([
+            'image' => Storage::url($image),
+            'title' => $request->title,
+            'description' => $request->description,
+            'slug' => str_slug($request->title),
+            'timeToCook' => $request->timeToCook
+        ]);
+
         return response()->json([
-            'image' => asset(Storage::url($image))
+            'recipe' => $recipe
         ]);
     }
 
