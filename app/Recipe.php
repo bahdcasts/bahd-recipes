@@ -8,6 +8,8 @@ class Recipe extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['ingredients', 'steps'];
+
     public function user() {
         return $this->belongsTo(User::class);
     }

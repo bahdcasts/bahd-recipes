@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Storage;
+use App\Step;
 use App\Recipe;
+use App\Ingredient;
 use Illuminate\Http\Request;
 
 class RecipesController extends Controller
@@ -49,8 +51,31 @@ class RecipesController extends Controller
             'timeToCook' => $request->timeToCook
         ]);
 
+        $ingredients = json_decode($request->ingredients);
+        $steps = json_decode($request->procedure);
+
+        $ingredientsIntoDatabase = [];
+        $stepsIntoDatabase = [];        
+
+        foreach ($ingredients as $key => $value) {
+            array_push($ingredientsIntoDatabase, [
+                'text' => $value,
+                'recipe_id' => $recipe->id
+            ]);
+        }
+
+        foreach ($steps as $key => $value) {
+            array_push($stepsIntoDatabase, [
+                'text' => $value,
+                'recipe_id' => $recipe->id
+            ]);
+        }
+
+        Step::insert($stepsIntoDatabase);
+        Ingredient::insert($ingredientsIntoDatabase);
+
         return response()->json([
-            'recipe' => $recipe
+            'recipe' => $recipe->fresh()
         ]);
     }
 
