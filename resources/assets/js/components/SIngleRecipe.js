@@ -1,26 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Gravatar from 'react-gravatar';
 
 class SingleRecipe extends React.Component {
   render() {
+    const { recipe } = this.props;
     return (
       <div className="card">
-        <img className="card-img-top" style={{ maxHeight: 450 }} src="img/meal-1.jpg" alt="Card image cap" />
+        <img className="card-img-top" style={{ maxHeight: 450 }} src={recipe.image} alt="Card image cap" />
         <div className="card-body">
-          <h1 className="card-title text-center h4 mb-4">Emergency Jollof and Coconut stew
+          <h1 className="card-title text-center h4 mb-4">{recipe.title}
       <small className="text-muted" style={{ fontSize: 15 }}>
               <i className="ion ion-clock" />
-              2 min
+             {recipe.timeToCook}
       </small>
           </h1>
           <p className="text-center my-4">
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga
+            {recipe.description}
     </p>
           <hr />
           <div className="media text-center mx-auto my-5" style={{ width: 200 }}>
-            <img className="d-flex mr-3" style={{ width: 60, height: 60, borderRadius: '100%' }} src="http://i.pravatar.cc/300" alt="Recipe author avatar" />
+            <Gravatar className="d-flex mr-3" style={{ width: 60, height: 60, borderRadius: '100%' }} src="http://i.pravatar.cc/300" email={recipe.user.email} />
             <div className="media-body">
-              <h5 className="mt-3">Kati Frantz</h5>
+              <h5 className="mt-3">{recipe.user.name}</h5>
             </div>
           </div>
           <p className="text-muted h6 text-center my-4">
@@ -32,21 +34,18 @@ class SingleRecipe extends React.Component {
           {/* Begin ingredients section */}
           <h3 className="mb-3 text-muted">Ingredients</h3>
           <ul className="list-group mt-3">
-            <li className="list-group-item">Cras justo odio</li>
-            <li className="list-group-item">Dapibus ac facilisis in</li>
-            <li className="list-group-item">Morbi leo risus</li>
-            <li className="list-group-item">Porta ac consectetur ac</li>
-            <li className="list-group-item">Vestibulum at eros</li>
+            {recipe.ingredients.map(ingredient =>
+                 <li key={ingredient.id} className="list-group-item">{ingredient.text}</li>)}
           </ul>
           {/* End ingredients section */}
           {/* Begin procedures section */}
           <h3 className="mb-3 mt-3 text-muted">Procedure</h3>
           <ul className="list-group my-3">
-            <li className="list-group-item"><span className="badge badge-primary">1</span>   Cras justo odio</li>
-            <li className="list-group-item"><span className="badge badge-primary">2</span> Dapibus ac facilisis in</li>
-            <li className="list-group-item"><span className="badge badge-primary">3</span> Morbi leo risus</li>
-            <li className="list-group-item"><span className="badge badge-primary">4</span> Porta ac consectetur ac</li>
-            <li className="list-group-item"><span className="badge badge-primary">5</span> Vestibulum at eros</li>
+          {recipe.steps.map((step, index) =>
+                 <li className="list-group-item">
+                  <span className="badge badge-primary">{index + 1}</span>
+                  {step.text}
+                </li>)}
           </ul>
           <h3 className="my-3 text-muted">Reviews</h3>
           {/* End procedures section */}
@@ -84,6 +83,8 @@ class SingleRecipe extends React.Component {
 
 const singleRecipeElement = document.getElementById('singleRecipe')
 
+const getRecipe = () => window.SINGLE_RECIPE;
+
 if (singleRecipeElement) {
-  ReactDOM.render(<SingleRecipe />, singleRecipeElement)
+  ReactDOM.render(<SingleRecipe recipe={getRecipe()} />, singleRecipeElement)
 }

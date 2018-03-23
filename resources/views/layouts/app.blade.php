@@ -68,6 +68,11 @@
     <script>
         new WOW().init();
     </script>
+    <script>
+        @if(isset($recipe))
+            window.SINGLE_RECIPE = {!! $recipe !!}
+        @endif
+    </script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 

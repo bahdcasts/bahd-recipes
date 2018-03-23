@@ -8,10 +8,14 @@ class Recipe extends Model
 {
     protected $guarded = [];
 
-    protected $with = ['ingredients', 'steps'];
+    protected $with = ['ingredients', 'steps', 'user'];
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function getImageAttribute($image) {
+        return asset($image);
     }
 
     public function getRouteKeyName() {
