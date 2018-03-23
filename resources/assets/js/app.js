@@ -15,3 +15,5 @@ require('./bootstrap');
 
 require('./components/Login');
 require('./components/CreateRecipe');
+require('./components/SingleRecipe');
+

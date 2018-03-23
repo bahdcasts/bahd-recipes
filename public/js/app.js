@@ -10896,6 +10896,7 @@ __webpack_require__(96);
 
 __webpack_require__(116);
 __webpack_require__(219);
+__webpack_require__(233);
 
 /***/ }),
 /* 96 */
@@ -25295,6 +25296,261 @@ var CreateRecipeValidator = function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var SingleRecipe = function (_React$Component) {
+  _inherits(SingleRecipe, _React$Component);
+
+  function SingleRecipe() {
+    _classCallCheck(this, SingleRecipe);
+
+    return _possibleConstructorReturn(this, (SingleRecipe.__proto__ || Object.getPrototypeOf(SingleRecipe)).apply(this, arguments));
+  }
+
+  _createClass(SingleRecipe, [{
+    key: 'render',
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'card' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'card-img-top', style: { maxHeight: 450 }, src: 'img/meal-1.jpg', alt: 'Card image cap' }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'card-body' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'h1',
+            { className: 'card-title text-center h4 mb-4' },
+            'Emergency Jollof and Coconut stew',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'small',
+              { className: 'text-muted', style: { fontSize: 15 } },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'ion ion-clock' }),
+              '2 min'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'p',
+            { className: 'text-center my-4' },
+            'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'media text-center mx-auto my-5', style: { width: 200 } },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'd-flex mr-3', style: { width: 60, height: 60, borderRadius: '100%' }, src: 'http://i.pravatar.cc/300', alt: 'Recipe author avatar' }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'media-body' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'h5',
+                { className: 'mt-3' },
+                'Kati Frantz'
+              )
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'p',
+            { className: 'text-muted h6 text-center my-4' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'mr-3 h3' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'ion ion-happy-outline' }),
+              ' 531,233 '
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'mr-3 h3' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'ion ion-sad-outline' }),
+              ' 0'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'mr-3 h3' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'ion ion-ios-heart' }),
+              ' 33'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'h3',
+            { className: 'mb-3 text-muted' },
+            'Ingredients'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'ul',
+            { className: 'list-group mt-3' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { className: 'list-group-item' },
+              'Cras justo odio'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { className: 'list-group-item' },
+              'Dapibus ac facilisis in'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { className: 'list-group-item' },
+              'Morbi leo risus'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { className: 'list-group-item' },
+              'Porta ac consectetur ac'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { className: 'list-group-item' },
+              'Vestibulum at eros'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'h3',
+            { className: 'mb-3 mt-3 text-muted' },
+            'Procedure'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'ul',
+            { className: 'list-group my-3' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { className: 'list-group-item' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'span',
+                { className: 'badge badge-primary' },
+                '1'
+              ),
+              '   Cras justo odio'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { className: 'list-group-item' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'span',
+                { className: 'badge badge-primary' },
+                '2'
+              ),
+              ' Dapibus ac facilisis in'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { className: 'list-group-item' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'span',
+                { className: 'badge badge-primary' },
+                '3'
+              ),
+              ' Morbi leo risus'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { className: 'list-group-item' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'span',
+                { className: 'badge badge-primary' },
+                '4'
+              ),
+              ' Porta ac consectetur ac'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { className: 'list-group-item' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'span',
+                { className: 'badge badge-primary' },
+                '5'
+              ),
+              ' Vestibulum at eros'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'h3',
+            { className: 'my-3 text-muted' },
+            'Reviews'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'container my-4' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'row justify-content-center' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'col-10' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'media' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'd-flex mr-3', style: { width: 60, height: 60, borderRadius: '100%' }, src: 'http://i.pravatar.cc/300', alt: 'Recipe author avatar' }),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'media-body' },
+                    'I have just one thing to tell you. Please go to medical school, you have no hope in cooking.'
+                  )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'media' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'd-flex mr-3', style: { width: 60, height: 60, borderRadius: '100%' }, src: 'http://i.pravatar.cc/300', alt: 'Recipe author avatar' }),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'media-body' },
+                    'If not that am a christian ehn, I would just pray juju for your head now. Wetin be this ???!\uD83D\uDE28\uD83D\uDE28'
+                  )
+                )
+              )
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'h3',
+            { className: 'mb-3 mt-3 text-muted' },
+            'Leave a review'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { cols: 5, rows: 5, className: 'form-control', placeholder: 'Leave a review for this recipe...', defaultValue: "" }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'button',
+            { className: 'btn btn-primary btn-sm mt-3 float-right' },
+            'Save review'
+          )
+        )
+      );
+    }
+  }]);
+
+  return SingleRecipe;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+var singleRecipeElement = document.getElementById('singleRecipe');
+
+if (singleRecipeElement) {
+  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(SingleRecipe, null), singleRecipeElement);
+}
 
 /***/ })
 /******/ ]);
