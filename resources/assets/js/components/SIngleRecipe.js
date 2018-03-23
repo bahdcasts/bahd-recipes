@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Gravatar from 'react-gravatar';
 
+import Reviews from './Reviews';
+
 class SingleRecipe extends React.Component {
   render() {
     const { recipe } = this.props;
@@ -49,32 +51,7 @@ class SingleRecipe extends React.Component {
           </ul>
           <h3 className="my-3 text-muted">Reviews</h3>
           {/* End procedures section */}
-          {/* Reviews section */}
-          <div className="container my-4">
-            <div className="row justify-content-center">
-              <div className="col-10">
-                <div className="media">
-                  <img className="d-flex mr-3" style={{ width: 60, height: 60, borderRadius: '100%' }} src="http://i.pravatar.cc/300" alt="Recipe author avatar" />
-                  <div className="media-body">
-                    I have just one thing to tell you. Please go to medical school, you have no hope in cooking.
-            </div>
-                </div>
-                <hr />
-                <div className="media">
-                  <img className="d-flex mr-3" style={{ width: 60, height: 60, borderRadius: '100%' }} src="http://i.pravatar.cc/300" alt="Recipe author avatar" />
-                  <div className="media-body">
-                    If not that am a christian ehn, I would just pray juju for your head now. Wetin be this ???!😨😨
-            </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* End reviews section */}
-          {/* Begin create reviews section */}
-          <h3 className="mb-3 mt-3 text-muted">Leave a review</h3>
-          <textarea cols={5} rows={5} className="form-control" placeholder="Leave a review for this recipe..." defaultValue={""} />
-          <button className="btn btn-primary btn-sm mt-3 float-right">Save review</button>
-          {/* End create review section */}
+          <Reviews reviews={recipe.reviews} />
         </div>
       </div>
     );
